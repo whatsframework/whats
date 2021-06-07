@@ -1,21 +1,20 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
 	"whats/app/controller"
 
-	_ "whats/docs"
+	"github.com/gin-gonic/gin"
 )
 
-// Routers Routers
+// Routers Gin Routers
 func Routers(router *gin.Engine) *gin.Engine {
-	NoMethodRoute(router)
-	url := ginSwagger.URL("/swagger/doc.json") // The url pointing to API definition
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
-
 	router.GET("/", controller.HomeIndex)
+
+	noMethodRoute(router)
+
+	apiRouter(router)
+
+	swaggerRouter(router)
 
 	return router
 }

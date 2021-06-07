@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/dgrijalva/jwt-go/v4"
-
 	"whats/core/config"
+
+	"github.com/dgrijalva/jwt-go/v4"
 )
 
 // SecretKey JWT SecretKey
-var SecretKey = config.GetDefaultEnv("JWT_SECRET_KEY", "cnbattle")
+var SecretKey = config.GetDefaultEnv("JWT_SECRET_KEY", "whats")
 
 // exp JWT exp
 var exp = config.GetDefaultEnvToInt("JWT_SECRET_EXP", 7200)
@@ -24,7 +24,7 @@ type Claims struct {
 }
 
 // VerifyToken 验证JWT
-func VerifyToken(tokenStr string) (int64, error) {
+func VerifyToken(tokenStr string) (uid int64, err error) {
 	token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("not authorization")
@@ -57,4 +57,13 @@ func GenerateToken(uid int64) (string, error) {
 		"iat": time.Now().Unix(),
 	})
 	return token.SignedString([]byte(SecretKey)) //对应的字符串请自行生成，最后足够使用加密后的字符串
+}
+
+// RenewToken 续期Token
+func RenewToken(tokenStr string) (string, error) {
+	uid, err := VerifyToken(tokenStr)
+	if err != nil {
+		return "", err
+	}
+	return GenerateToken(uid)
 }

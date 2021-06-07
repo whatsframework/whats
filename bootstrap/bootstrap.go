@@ -1,13 +1,16 @@
 package bootstrap
 
 import (
-	"github.com/gin-gonic/gin"
 	"log"
-	"whats/core/cache"
 
+	"whats/app/middleware"
+	"whats/core"
+	"whats/core/cache"
 	"whats/core/config"
 	"whats/core/database"
 	"whats/router"
+
+	"github.com/gin-gonic/gin"
 )
 
 var (
@@ -32,7 +35,7 @@ func Run() {
 	gin.SetMode(ginMode)
 	ginEngine := gin.Default()
 	// use default settings
-	//ginEngine.Use(core.Recover(), middleware.Cors())
+	ginEngine.Use(core.Recover(), middleware.Cors())
 
 	// load  routers
 	engine := router.Routers(ginEngine)

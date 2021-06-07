@@ -1,7 +1,9 @@
 package core
 
 import (
-	"log"
+	"fmt"
+
+	"whats/app/library/helper"
 
 	"github.com/gin-gonic/gin"
 )
@@ -11,13 +13,11 @@ func Recover() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		defer func() {
 			if err := recover(); err != nil {
-				log.Println(recover())
-				log.Println(err)
-				//c.JSON(200, helper.Error{
-				//	Success:      false,
-				//	ErrorCode:    500,
-				//	ErrorMessage: fmt.Sprintf("System exception:%s", err),
-				//})
+				c.JSON(200, helper.RespErr{
+					Success:      false,
+					ErrorCode:    500,
+					ErrorMessage: fmt.Sprintf("System exception:%s", err),
+				})
 				c.Abort()
 			}
 		}()
