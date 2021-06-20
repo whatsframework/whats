@@ -1,16 +1,20 @@
 package service
 
-type AuthService struct {
+type authService struct {
 }
 
-func (u *AuthService) Login() {
+func NewAuthService() *authService {
+	return &authService{}
+}
+
+func (u *authService) Login() {
 
 }
 
-func (u *AuthService) Reg() {
+func (u *authService) Reg() {
 
 }
 
-func (u *AuthService) Info() {
+func (u *authService) Info() {
 
 }

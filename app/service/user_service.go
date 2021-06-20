@@ -1,16 +1,20 @@
 package service
 
-type UserService struct {
+type userService struct {
 }
 
-func (u *UserService) Login() {
+func NewUserService() *userService {
+	return &userService{}
+}
+
+func (u *userService) Login() {
 
 }
 
-func (u *UserService) Reg() {
+func (u *userService) Registry() {
 
 }
 
-func (u *UserService) Info() {
+func (u *userService) Info() {
 
 }

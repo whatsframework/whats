@@ -8,13 +8,13 @@ import (
 
 // Routers Gin Routers
 func Routers(router *gin.Engine) *gin.Engine {
+	noMethodRoute(router)
 	router.GET("/", controller.HomeIndex)
 
-	noMethodRoute(router)
-
-	apiRouter(router)
-
-	swaggerRouter(router)
+	api := router.Group("api")
+	{
+		controller.NewUserController().Router(api)
+	}
 
 	return router
 }
