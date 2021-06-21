@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"net/http"
-	"whats/core"
 
+	"whats/core"
 	"whats/core/token"
 
 	"github.com/gin-gonic/gin"

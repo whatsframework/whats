@@ -2,10 +2,12 @@ package database
 
 import (
 	"context"
+	"time"
+
+	"whats/core/config"
+
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"time"
-	"whats/core/config"
 )
 
 var (

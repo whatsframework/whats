@@ -1,9 +1,12 @@
 package controller
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+	"whats/app/middleware"
+
 	"whats/core"
+
+	"github.com/gin-gonic/gin"
 )
 
 type userController struct {
@@ -37,8 +40,12 @@ func (c *userController) info(ctx *gin.Context) {
 func (c *userController) Router(router *gin.RouterGroup) {
 	v1 := router.Group("v1")
 	{
-		v1.POST("user/login", c.login)
 		v1.POST("user/registry", c.registry)
-		v1.GET("user/info", c.info)
+		v1.POST("user/login", c.login)
+		// has auth
+		auth := v1.Use(middleware.Auth())
+		{
+			auth.GET("user/info", c.info)
+		}
 	}
 }

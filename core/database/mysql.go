@@ -2,13 +2,15 @@ package database
 
 import (
 	"fmt"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
-	"gorm.io/gorm/schema"
 	"log"
 	"strings"
 	"sync"
+
 	"whats/core/config"
+
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+	"gorm.io/gorm/schema"
 )
 
 var (

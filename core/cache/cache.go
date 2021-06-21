@@ -2,9 +2,11 @@ package cache
 
 import (
 	"fmt"
-	"github.com/go-redis/redis/v8"
 	"sync"
+
 	"whats/core/config"
+
+	"github.com/go-redis/redis/v8"
 )
 
 var initOnce sync.Once

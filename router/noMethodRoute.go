@@ -2,8 +2,9 @@ package router
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 // noMethodRoute 404 错误
