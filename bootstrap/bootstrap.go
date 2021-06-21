@@ -3,6 +3,7 @@ package bootstrap
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"whats/core/cache"
 	"whats/core/database"
 
@@ -44,7 +45,7 @@ func Run() {
 	ginEngine.Use(cors.Default())
 
 	ginEngine.Use(gin.CustomRecovery(func(c *gin.Context, recovered interface{}) {
-		c.JSON(200, core.NewE(500, fmt.Sprintf("System exception:%s", recovered)))
+		c.JSON(http.StatusOK, core.NewE(500, fmt.Sprintf("System exception:%s", recovered)))
 		c.Abort()
 	}))
 

@@ -3,17 +3,12 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"whats/app/library/helper"
+	"whats/core"
 )
 
-// HomeIndex
-// @Summary 首页
-// @Produce  json
-// @Param authorization header string true "用户Token"
-// @Router / [get]
+// HomeIndex 首页
 func HomeIndex(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, helper.RespOne{
+	ctx.JSON(http.StatusOK, core.H{
 		Success: true,
-		Message: "hello world",
 	})
 }

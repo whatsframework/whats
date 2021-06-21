@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"net/http"
+	"whats/core"
 
-	"whats/app/library/helper"
 	"whats/core/token"
 
 	"github.com/gin-gonic/gin"
@@ -12,9 +12,9 @@ import (
 // Auth 通用权限判断
 func Auth() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		tokenStr := ctx.GetHeader("token")
+		tokenStr := ctx.GetHeader("authorization")
 		if tokenStr == "" {
-			ctx.JSON(http.StatusUnauthorized, helper.RespErr{
+			ctx.JSON(http.StatusOK, core.E{
 				Success:      false,
 				ErrorCode:    http.StatusUnauthorized,
 				ErrorMessage: "token is empty",
@@ -24,7 +24,7 @@ func Auth() gin.HandlerFunc {
 		}
 		uid, err := token.VerifyToken(tokenStr)
 		if err != nil {
-			ctx.JSON(http.StatusUnauthorized, helper.RespErr{
+			ctx.JSON(http.StatusOK, core.E{
 				Success:      false,
 				ErrorCode:    http.StatusUnauthorized,
 				ErrorMessage: err.Error(),

@@ -2,6 +2,7 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"whats/core"
 )
 
@@ -14,21 +15,21 @@ func NewUserController() *userController {
 
 func (c *userController) login(ctx *gin.Context) {
 	//service.NewUserService().Login()
-	ctx.JSON(200, core.H{
+	ctx.JSON(http.StatusOK, core.H{
 		Success: true,
 	})
 }
 
 func (c *userController) registry(ctx *gin.Context) {
 	//service.NewUserService().Login()
-	ctx.JSON(200, core.H{
+	ctx.JSON(http.StatusOK, core.H{
 		Success: true,
 	})
 }
 
 func (c *userController) info(ctx *gin.Context) {
 	//service.NewUserService().Info()
-	ctx.JSON(200, core.H{
+	ctx.JSON(http.StatusOK, core.H{
 		Success: true,
 	})
 }
