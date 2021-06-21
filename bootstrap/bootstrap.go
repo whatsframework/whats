@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"whats/core/cache"
-	"whats/core/database"
 
 	"whats/core"
+	"whats/core/cache"
 	"whats/core/config"
+	"whats/core/database"
 	"whats/router"
 
 	"github.com/gin-contrib/cors"
@@ -16,14 +16,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var (
-	ginMode = "release"
-)
-
 // init 初始化 需要的数据
 func init() {
-	if config.GetEnvToBool("APP_DEBUG") {
-		ginMode = "debug"
+	if !config.GetEnvToBool("APP_DEBUG") {
+		gin.SetMode(gin.ReleaseMode)
+		//log.Println(gin.DebugMode)
 	}
 	// init database
 	database.InitMysql()
@@ -32,25 +29,23 @@ func init() {
 
 // Run 开始
 func Run() {
-
-	gin.SetMode(ginMode)
-	ginEngine := gin.New()
+	engine := gin.New()
 
 	//f, _ := os.Create(config.GetDefaultEnv("LOG_FILE", "gin.log"))
 	//gin.DefaultWriter = io.MultiWriter(f)
-	ginEngine.Use(gin.Logger())
+	engine.Use(gin.Logger())
 
-	ginEngine.Use(gzip.Gzip(gzip.DefaultCompression))
+	engine.Use(gzip.Gzip(gzip.DefaultCompression))
 
-	ginEngine.Use(cors.Default())
+	engine.Use(cors.Default())
 
-	ginEngine.Use(gin.CustomRecovery(func(c *gin.Context, recovered interface{}) {
+	engine.Use(gin.CustomRecovery(func(c *gin.Context, recovered interface{}) {
 		c.JSON(http.StatusOK, core.NewE(500, fmt.Sprintf("System exception:%s", recovered)))
 		c.Abort()
 	}))
 
 	// load  routers
-	engine := router.Routers(ginEngine)
+	router.Routers(engine)
 	err := engine.Run(":" + config.GetDefaultEnv("HTTP_PORT", "1993"))
 	if err != nil {
 		log.Panic(err)
