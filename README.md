@@ -22,6 +22,13 @@
 
 ## Config
 
+### App Config
+```dotenv
+APP_NAME = whats
+APP_DEBUG = true
+HTTP_PORT = 2021
+```
+
 ### DB Server Config
 
 #### mysql Server
@@ -57,6 +64,18 @@ DB_DSN=sqlserver://root:123456@localhost:9930?database=whats
 ```dotenv
 DB_CONNECTION=clickhouse
 DB_DSN="tcp://localhost:9000?database=whats&username=root&password=123456&read_timeout=10&write_timeout=20
+```
+
+### Redis Server Config
+```dotenv
+REDIS_ADDR=127.0.0.1:6379
+REDIS_PASSWORD=
+```
+### Jwt Config
+
+```dotenv
+JWT_SECRET_KEY = whats
+JWT_SECRET_EXP = 7200
 ```
 
 ## Code Demo

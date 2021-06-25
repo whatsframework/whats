@@ -1,7 +1,6 @@
 package cache
 
 import (
-	"fmt"
 	"sync"
 
 	"whats/core/config"
@@ -16,7 +15,7 @@ var RDB *redis.Client
 func Init() {
 	initOnce.Do(func() {
 		RDB = redis.NewClient(&redis.Options{
-			Addr:     fmt.Sprintf("%s:%s", config.GetEnv("REDIS_HOST"), config.GetEnv("REDIS_PORT")),
+			Addr:     config.GetEnv("REDIS_ADDR"),
 			Password: config.GetEnv("REDIS_PASSWORD"),
 		})
 	})
