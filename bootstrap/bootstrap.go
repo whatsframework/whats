@@ -23,7 +23,7 @@ func init() {
 		//log.Println(gin.DebugMode)
 	}
 	// init database
-	database.InitMysql()
+	database.InitAll()
 	cache.Init()
 }
 
