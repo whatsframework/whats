@@ -15,6 +15,5 @@ var (
 func InitAll() {
 	once.Do(func() {
 		InitMysql()
-		//InitMongoDB()
 	})
 }

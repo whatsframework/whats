@@ -1,6 +1,7 @@
-# whatsframework 
+# whatsframework
 
 ## Directory Structure
+
 ```
 ├─app
 │  ├─controller
@@ -19,16 +20,57 @@
 └─router
 ```
 
+## Config
+
+### DB Server Config
+
+#### mysql Server
+
+```dotenv
+DB_CONNECTION=mysql
+DB_DSN=root:123456@tcp(127.0.0.1:3306)/whats?charset=utf8mb4&parseTime=True&loc=Local
+```
+
+#### sqlite Server
+
+```dotenv
+DB_CONNECTION=sqlite
+DB_DSN=whats.db
+```
+
+#### postgres Server
+
+```dotenv
+DB_CONNECTION=postgres
+DB_DSN="host=localhost user=root password=123456 dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Shanghai"
+```
+
+#### sqlserver Server
+
+```dotenv
+DB_CONNECTION=sqlite
+DB_DSN=sqlserver://root:123456@localhost:9930?database=whats
+```
+
+#### clickhouse Server
+
+```dotenv
+DB_CONNECTION=clickhouse
+DB_DSN="tcp://localhost:9000?database=whats&username=root&password=123456&read_timeout=10&write_timeout=20
+```
+
 ## Code Demo
+
 ### Controller Demo
+
 ```go
 package controller
 
 import (
 	"net/http"
-	
+
 	"whats/core"
-	
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -72,6 +114,7 @@ func (c *userController) Router(router *gin.RouterGroup) {
 ```
 
 ### Service Demo
+
 ```go
 package service
 
@@ -96,6 +139,7 @@ func (u *userService) Info() {
 ```
 
 ### Router Demo
+
 ```go
 package router
 

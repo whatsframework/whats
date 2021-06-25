@@ -18,7 +18,6 @@ func Init() {
 		RDB = redis.NewClient(&redis.Options{
 			Addr:     fmt.Sprintf("%s:%s", config.GetEnv("REDIS_HOST"), config.GetEnv("REDIS_PORT")),
 			Password: config.GetEnv("REDIS_PASSWORD"),
-			//DB:       config.GetEnvToInt("REDIS_DB"),
 		})
 	})
 }
