@@ -9,20 +9,10 @@ PACKAGES ?= $(shell $(GO) list ./...)
 SOURCES ?= $(shell find . -name "*.go" -type f)
 TAGS ?=
 
-ifneq ($(DRONE_TAG),)
-	VERSION ?= $(DRONE_TAG)
-else
-	VERSION ?= $(shell git describe --tags --always || git rev-parse --short HEAD)
-endif
+VERSION ?= $(shell git describe --tags --always || git rev-parse --short HEAD)
 
-LDFLAGS ?= -X 'main.Version=$(VERSION)' -X 'main.DroneBuildNumber=$(DRONE_BUILD_NUMBER)' -X 'main.DroneTag=$(DRONE_TAG)'
+LDFLAGS ?= -X 'main.Version=$(VERSION)'
 
-#ifneq ($(shell uname), Darwin)
-#	EXTLDFLAGS = -extldflags "-static" $(null)
-##	EXTLDFLAGS = -extldflags $(null)
-#else
-#	EXTLDFLAGS =
-#endif
 EXTLDFLAGS = -extldflags "-static" $(null)
 
 all: build
@@ -77,10 +67,7 @@ test: fmt-check
 	@$(GO) test -v -cover -coverprofile coverage.txt ./... && echo "\n==>\033[32m Ok\033[m\n" || exit 1
 
 build:
-	$(GO) build -v -tags "$(TAGS)" -ldflags "$(EXTLDFLAGS) -s -w $(LDFLAGS)"  -o api ./apps/api/cmd/api.go
-
-build-cron:
-	$(GO) build -v -tags "$(TAGS)" -ldflags "$(EXTLDFLAGS) -s -w $(LDFLAGS)"  -o cron ./apps/cron/cmd/cron.go
+	$(GO) build -v -tags "$(TAGS)" -ldflags "$(EXTLDFLAGS) -s -w $(LDFLAGS)"  -o $(EXECUTABLE) .
 
 release: release-dirs release-build release-copy release-check
 
