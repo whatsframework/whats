@@ -10,7 +10,6 @@ require (
 	github.com/go-playground/validator/v10 v10.6.1
 	github.com/go-redis/redis/v8 v8.10.0
 	github.com/joho/godotenv v1.3.0
-	golang.org/x/text v0.3.5 // indirect
 	gorm.io/driver/clickhouse v0.2.0
 	gorm.io/driver/mysql v1.1.1
 	gorm.io/driver/postgres v1.1.0
