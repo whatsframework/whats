@@ -21,8 +21,8 @@ var (
 	initOnce sync.Once
 )
 
-// InitMysql InitMysql
-func InitMysql() {
+// InitDB InitDB
+func InitDB() {
 	initOnce.Do(func() {
 		var dialects gorm.Dialector
 		switch config.GetEnv("DB_CONNECTION") {

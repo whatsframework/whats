@@ -14,6 +14,6 @@ var (
 // InitAll InitAll
 func InitAll() {
 	once.Do(func() {
-		InitMysql()
+		InitDB()
 	})
 }
