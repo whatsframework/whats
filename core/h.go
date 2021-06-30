@@ -1,5 +1,6 @@
 package core
 
+// H common struct
 type H struct {
 	Success      bool        `json:"success"`
 	ErrorCode    int         `json:"errorCode,omitempty"`
@@ -10,12 +11,14 @@ type H struct {
 	Total        int64       `json:"total,omitempty"`
 }
 
+// E error struct
 type E struct {
 	Success      bool   `json:"success"`
 	ErrorCode    int    `json:"errorCode,omitempty"`
 	ErrorMessage string `json:"errorMessage,omitempty"`
 }
 
+// NewE NewE
 func NewE(errorCode int, errorMessage string) *E {
 	return &E{Success: false, ErrorCode: errorCode, ErrorMessage: errorMessage}
 }

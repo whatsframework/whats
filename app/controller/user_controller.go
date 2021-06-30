@@ -9,35 +9,38 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type userController struct {
+// UserController UserController
+type UserController struct {
 }
 
-func NewUserController() *userController {
-	return &userController{}
+// NewUserController NewUserController
+func NewUserController() *UserController {
+	return &UserController{}
 }
 
-func (c *userController) login(ctx *gin.Context) {
+func (c *UserController) login(ctx *gin.Context) {
 	//service.NewUserService().Login()
 	ctx.JSON(http.StatusOK, core.H{
 		Success: true,
 	})
 }
 
-func (c *userController) registry(ctx *gin.Context) {
+func (c *UserController) registry(ctx *gin.Context) {
 	//service.NewUserService().Login()
 	ctx.JSON(http.StatusOK, core.H{
 		Success: true,
 	})
 }
 
-func (c *userController) info(ctx *gin.Context) {
+func (c *UserController) info(ctx *gin.Context) {
 	//service.NewUserService().Info()
 	ctx.JSON(http.StatusOK, core.H{
 		Success: true,
 	})
 }
 
-func (c *userController) Router(router *gin.RouterGroup) {
+// Router Router
+func (c *UserController) Router(router *gin.RouterGroup) {
 	v1 := router.Group("v1")
 	{
 		v1.POST("user/registry", c.registry)

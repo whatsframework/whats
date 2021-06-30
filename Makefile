@@ -17,8 +17,8 @@ EXTLDFLAGS = -extldflags "-static" $(null)
 
 all: build
 
-c: vet misspell-check
-#c: vet lint misspell-check sec
+#c: vet misspell-check sec
+c: vet lint misspell-check sec
  
 fmt:
 	$(GOFMT) -w $(SOURCES)

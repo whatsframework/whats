@@ -9,6 +9,8 @@ import (
 )
 
 var initOnce sync.Once
+
+// RDB redis client
 var RDB *redis.Client
 
 // Init init cache
