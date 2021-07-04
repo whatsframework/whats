@@ -20,7 +20,6 @@ import (
 func init() {
 	if !config.GetEnvToBool("APP_DEBUG") {
 		gin.SetMode(gin.ReleaseMode)
-		//log.Println(gin.DebugMode)
 	}
 	// init database
 	database.InitAll()
