@@ -12,8 +12,8 @@ RUN echo 'Asia/Shanghai' >/etc/timezone
 WORKDIR /www
 
 COPY --from=builder /app/.env.prod /www/.env
-COPY --from=builder  /app/whats /www/app
+COPY --from=builder  /app/whats /www/whats
 
 EXPOSE 8080
 
-ENTRYPOINT ["/www/app","web"]
+ENTRYPOINT ["/www/whats","web"]
