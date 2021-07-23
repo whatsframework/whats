@@ -9,7 +9,7 @@ require (
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-contrib/gzip v0.0.3
 	github.com/gin-gonic/gin v1.7.2
-	github.com/go-playground/validator/v10 v10.6.1
+	github.com/go-playground/validator/v10 v10.7.0
 	github.com/go-redis/redis/v8 v8.11.0
 	github.com/joho/godotenv v1.3.0
 	gorm.io/driver/clickhouse v0.2.1
@@ -17,5 +17,5 @@ require (
 	gorm.io/driver/postgres v1.1.0
 	gorm.io/driver/sqlite v1.1.4
 	gorm.io/driver/sqlserver v1.0.7
-	gorm.io/gorm v1.21.11
+	gorm.io/gorm v1.21.12
 )
