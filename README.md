@@ -1,4 +1,10 @@
-# whatsframework
+# [whats framework](https://github.com/whatsframework/whats)
+
+## Doc
+
+[Whats](https://github.com/whatsframework/whats)
+[Gin](https://github.com/gin-gonic/gin)
+[Gorm](https://gorm.io/docs/)
 
 ## Directory Structure
 
